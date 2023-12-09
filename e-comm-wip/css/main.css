@@ -29,9 +29,7 @@ a {
     text-decoration: none;
 }
 
-.disabled{
-    display: none;
-}
+
 
 /*COMPONENTES PRINCIPALES */
 
@@ -275,4 +273,8 @@ main{
     color: var(--clr-white);
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.disabled{
+    display: none;
 }
