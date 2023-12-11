@@ -57,7 +57,9 @@ const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategoria = document.querySelectorAll(".boton-categoria");
 const tituloPrincipal = document.querySelector("#titulo-principal");
 let botonesAgregar = document.querySelectorAll(".producto-agregar");
-const numerito = document.querySelector("#numerito")
+const numerito = document.querySelector("#numerito");
+
+const botonCarrito = document.querySelector("#boton-carrito");
 
 function despliegaProductos(productosElegidos) {
     contenedorProductos.innerHTML = "";
@@ -85,9 +87,21 @@ despliegaProductos(productos);
 botonesCategoria.forEach(boton => {
     boton.addEventListener("click", (e) => {
         // Quita active a todos
-        botonesCategoria.forEach(boton => boton.classList.remove("active"));
+        // botonesCategoria.forEach(boton => boton.classList.remove("active"));
         // Agrega active al seleccionado
+        // e.currentTarget.classList.add("active");
+
+        //Quita active a todos dejando el icono la manito vacio
+        botonesCategoria.forEach(boton => {
+            boton.classList.remove("active");
+            boton.querySelector("i").className = `bi bi-hand-index-thumb`;
+        });
+        // Agrega active al seleccionado con el icono de la manito lleno
         e.currentTarget.classList.add("active");
+        e.currentTarget.querySelector("i").className = `bi bi-hand-index-thumb-fill`;
+
+
+
 
         if (e.currentTarget.id != "todos") {
             const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
@@ -143,4 +157,11 @@ function agregarAlCarito(e) {
 function actualizaNumerito() {
     let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     numerito.innerText = nuevoNumerito;
+    if (nuevoNumerito === 0) {
+        botonCarrito.querySelector("i").classList.remove("bi-cart-fill");
+        botonCarrito.querySelector("i").classList.add("bi-cart");
+    } else {
+        botonCarrito.querySelector("i").classList.remove("bi-cart");
+        botonCarrito.querySelector("i").classList.add("bi-cart-fill");
+    }
 }
