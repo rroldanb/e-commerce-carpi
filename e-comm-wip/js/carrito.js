@@ -12,6 +12,8 @@ const botonComprar = document.querySelector("#carrito-acciones-comprar");
 
 const botonCarrito = document.querySelector("#boton-carrito");
 
+const cant = document.querySelector("#cant");
+
 function desplegarProductosCarrito() {
     if (productosEnCarrito && productosEnCarrito.length > 0) {
 
@@ -31,12 +33,13 @@ function desplegarProductosCarrito() {
                 `
             <img class="carrito-producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
                 <div class="carrito-producto-titulo">
-                    <small>Título</small>
+                    <small>Producto</small>
                     <h3>${producto.titulo}</h3>
                 </div>
                 <div class="carrito-producto-cantidad">
                     <small>Cantidad</small>
-                    <p>${producto.cantidad}</p>
+                    <input class="carrito-producto-cantidad-input" type="number"
+                                value="${producto.cantidad}">
                 </div>
                 <div class="carrito-producto-precio">
                     <small>Precio</small>
@@ -48,8 +51,11 @@ function desplegarProductosCarrito() {
                 </div>
             <button class="carrito-producto-eliminar" id= "${producto.id}"><i class="bi bi-trash-fill"></i></button>
             `
+            ;
 
-                ;
+            const inputCantidad = div.querySelector('.carrito-producto-cantidad-input');
+            inputCantidad.addEventListener('change', nuevaCantidad);
+
             contenedorCarritoProductos.append(div);
         });
     } else {
@@ -61,6 +67,7 @@ function desplegarProductosCarrito() {
         botonCarrito.querySelector("i").classList.add("bi-cart");
     }
     actualizaBotonesEliminar();
+    actualizaCant();
     actualizarTotal();
 }
 
@@ -110,4 +117,30 @@ function comprarCarrito() {
     contenedorCarritoComprado.classList.remove("disabled");
     botonCarrito.querySelector("i").classList.remove("bi-cart-fill");
     botonCarrito.querySelector("i").classList.add("bi-cart");
+}
+
+function nuevaCantidad(event) {
+    const input = event.target;
+    // Establecer mínimo en 1 si la cantidad es menor o igual a 0
+    const nuevaCantidad = input.value <= 0 ? 1 : input.value;
+    // Obtener el ID del producto
+    const productoId = input.closest('.carrito-producto').querySelector('.carrito-producto-eliminar').id;
+
+    // Encontrar el índice del producto actualizado en el arreglo
+    const index = productosEnCarrito.findIndex(producto => producto.id === productoId);
+    if (index !== -1) {
+        // Actualizar la cantidad en el objeto del producto
+        productosEnCarrito[index].cantidad = parseInt(nuevaCantidad);
+
+        // Actualizar el objeto en el localStorage
+        localStorage.setItem('productos-en-carrito', JSON.stringify(productosEnCarrito));
+    }
+    desplegarProductosCarrito();
+    actualizarTotal();
+}
+
+function actualizaCant() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    cant.innerText = nuevoNumerito;
+
 }
