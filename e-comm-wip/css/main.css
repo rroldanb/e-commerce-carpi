@@ -48,7 +48,6 @@ a {
     display: grid;
     grid-template-columns: 1fr 4fr;
     background-color: var(--clr-main);
-    /* background: #0B486B; */
     background: -webkit-linear-gradient(to left, #F56217, #0B486B);
     background: linear-gradient(to left, #F56217, #0B486B);
 
@@ -327,8 +326,6 @@ main {
 
 .carrito-acciones-comprar:hover {
     background-color: var(--clr-green);
-    /* background-color: var(--clr-main); */
-    /* background: linear-gradient(to left, #F56217, #0B486B); */
 }
 
 .disabled {

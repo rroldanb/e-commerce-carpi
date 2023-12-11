@@ -86,10 +86,6 @@ despliegaProductos(productos);
 // Filtra productos por categoria
 botonesCategoria.forEach(boton => {
     boton.addEventListener("click", (e) => {
-        // Quita active a todos
-        // botonesCategoria.forEach(boton => boton.classList.remove("active"));
-        // Agrega active al seleccionado
-        // e.currentTarget.classList.add("active");
 
         //Quita active a todos dejando el icono la manito vacio
         botonesCategoria.forEach(boton => {
