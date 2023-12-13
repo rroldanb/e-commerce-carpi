@@ -41,6 +41,17 @@ const pantalon3 = new Producto("pantalon-03", "Pantalón 03", "./img/pantalones/
 const pantalon4 = new Producto("pantalon-04", "Pantalón 04", "./img/pantalones/04.jpg", "Pantalones", "pantalones", 1000);
 const pantalon5 = new Producto("pantalon-05", "Pantalón 05", "./img/pantalones/05.jpg", "Pantalones", "pantalones", 1000);
 
+// Carnes
+
+let asado = new Producto("carne-premium-01", "Asado", "./img/carnes/asado.webp", "Carnes Premium", "carnes-premium", 11000);
+let bife = new Producto("carne-premium-02", "Bife", "./img/carnes/bife-angus.webp", "Carnes Premium", "carnes-premium", 12000);
+let cuadril = new Producto("carne-premium-03", "Colita de Cuadril", "./img/carnes/colita-de-cuadril.webp", "Carnes Premium", "carnes-premium", 13000);
+let entrana = new Producto("carne-premium-04", "Entraña", "./img/carnes/entrana.webp", "Carnes Premium", "carnes-premium", 14000);
+let tomahawk = new Producto("carne-premium-05", "Tomahawk", "./img/carnes/tomahawk.webp", "Carnes Premium", "carnes-premium", 15000);
+let entrecot = new Producto("carne-premium-06", "Entrecot", "./img/carnes/entrecot.webp", "Carnes Premium", "carnes-premium", 16000);
+
+const PRODUCTOS = [asado, bife, cuadril, entrana, tomahawk, entrecot];
+
 //AGREGA PRODUCTOS A LA MATRIZ
 
 const productos = [
@@ -50,6 +61,9 @@ const productos = [
     camiseta1, camiseta2, camiseta3, camiseta4, camiseta5, camiseta6, camiseta7, camiseta8,
     // Pantalones
     pantalon1, pantalon2, pantalon3, pantalon4, pantalon5
+    ,
+    //Carnes
+    asado, bife, cuadril, entrana, tomahawk, entrecot
 ];
 
 // Carga elementos del DOM en variables
